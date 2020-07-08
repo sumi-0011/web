@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>문서의 주소 정보</title>
+
+    </head>
+    <body>
+        Location 객체는 문서의 주소와 관련된 객체로 window 객체의 프로피티다. 
+        이 객체를 이용해서 윈도우의 문서 URL을 변경할수있고, 문서의 위치롸 관련해서 다양한 정보를 얻을 수 있다.
+        <h2>현재 윈도우의 URL알아내기</h2>  
+        console.log(location.toString(), location.href);
+
+        <h2>URL Parsing</h2>
+        location 객체는 URL을 의미에 따라서 별도의 프로퍼티로 제공하고 있다. 
+        console.log(location.protocol, location.host, location.port, location.pathname, location.search, location.hash)
+
+        <h2>URL 변경하기</h2>
+        아래코드는 현재 문서를 http://egoing.net으로 이동한다. 
+        location.href = 'http://egoing.net'
+
+    </body>
+</html>

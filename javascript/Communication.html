@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>alert</h2>
+        경고창이라 부른다. 사용자에게 정보를 제공하거나 디버깅등의 용도로 많이 사용된다.<br>
+        <input type="button" value="alert" onclick="alert('hello world')">
+        <h2>confirm</h2>
+        확인을 누르면 true, 취소를 누르면 false를 리턴한다. <br>
+        <input type="button" value="confirm" onclick="func_confirm()">
+        <script>
+            function func_confirm() {
+                if(confirm('ok?')) {
+                    alert('ok')
+                }
+                else{
+                    alert('cancel');
+                }
+            }
+        </script>
+        <h2>prompt</h2> 
+        <input type="button" value="prompt" onclick="func_prompt()">
+        <script>
+            function func_prompt() {
+                if(prompt('id?') ==='engoing') {
+                    alert('welcome');
+                }
+                else {
+                    alert('fail');
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
