@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="background-color: powderblue">Dom</h1>
+    Document Object Model 로 웹페이지를 자바스킈븥로 제어하기 위한 객체모델을 말한다. 
+    <br>window 객체의 document 프로퍼티를 통해서 사용할수 있다. 
+    <br>Window 객체가 창을 의미한다면 Document 객체는 윈도우에 로드된 문서를 의미한다고 할 수 있다.. 
+    <br> Dom의 하위 수업에서는 문서를 제어하는 방법에 대한 내용을 다룬다. 
+
+    <h2>-------------------------------------</h2>
+    window객체 : 창을의미 <br>
+    document객체 : 창에 로드된 문서를 의미
+
+    <h2>-------------------------------------</h2>
+    <h1 style="background-color: powderblue">제어대상을 찾기</h1>
+    문서를 자바스크립트로 제어하려면 제어 대상에 해당되는 객체를 찾는 것이 제일 먼저 할일이다. 문서 내에서 객체르 찾는 방법은 document 객체의 메소드를 이용한다. 
+    <h2>document.getElementsByTagName</h2>
+    문서 내에서 특정 태그에 해당되는 객체를 찾는 방법은 여러가지가 있다. getElementsByTagName은 인자로 전달된 태그명에 해당하는 객체를 찾아서 그 리스를 NodeList라는 유사 배열에 담아서 반환한다. NodeList는 배열은 아니지만 length와 배열접근연산자를 사용해서 엘리먼트를 조회할수있다.
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        var lis = document.getElementsByTagName('li');
+        for(var i=0;i<lis.length;i++) {
+            lis[i].style.color='red';
+        }
+    </script>
+    <p>
+        만약 조회의 대상을 좁히려면 아래와 같이 특정객체를 지정하면 된다. 이러한 원칙은 다른 메소드에도 적용된다. 
+    </p>
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+    <script>
+        var ul = document.getElementsByTagName('ul')[0];
+        var liss  = ul.getElementsByTagName('li');
+        for(var i=0;i<liss.length;i++) {
+            liss[i].style.color = 'blue';
+
+        }
+    </script>
+
+    <h2>document.getElementsByClassName</h2>   
+    class 속성의 값을 기준으로 객체를 조회할수도 있다.
+    <ul>
+        <li>HTML</li>
+        <li class="active">CSS</li>
+        <li class="active">JavaScript</li>
+    </ul>
+    <script>
+        var lis = document.getElementsByClassName('active');
+        for(var i=0;i<lis.length;i++) {
+            lis[i].style.color = 'red';
+        }
+    </script>
+    <h2>document.getElementById</h2>
+    id값을 기준으로 객체를 조회한다. 성능면에서 가장 우수하다.
+    <ul>
+        <li>HTML</li>
+        <li id = "active">CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <script>
+        var li = document.getElementById('active');
+        li.style.color = 'red';
+    </script>
+    <h2>document.querySelector</h2>
+    css 선택자의 문법을 이용해서 객체를 조회할수도 있다.
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ul>
+    <ol>
+        <li>HTML</li>
+        <li class  = "active2">CSS</li>
+        <li>JavaScript</li>
+    </ol>
+   <script>
+       var li = document.querySelector('li');
+       li.style.color = 'red';
+       var li = document.querySelector('.active2');
+       li.style.color='yellow';
+   </script>
+   <h2>document.querySelectorAll</h2>
+   querySelector과 기본적인 동작방법은 같지만 모든 객체를 조회한다는 점이 다르다.
+</body>
+</html>

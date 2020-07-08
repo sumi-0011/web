@@ -15,8 +15,12 @@
         console.log(location.protocol, location.host, location.port, location.pathname, location.search, location.hash)
 
         <h2>URL 변경하기</h2>
-        아래코드는 현재 문서를 http://egoing.net으로 이동한다. 
-        location.href = 'http://egoing.net'
+        아래코드는 현재 문서를 http://egoing.net으로 이동한다. <br>
+        location.href = 'http://egoing.net';
+        아래와 같은 방법도 같은 효과를 낸다. 
+        location = 'http://egoing.net';
+        <br>아래는 현재 문서를 리로드 하는 간편한 방법을 제공한다.
+        location.reload();
 
     </body>
 </html>
