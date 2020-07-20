@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node 객체</title>
+</head>
+
+<body>
+    <h1 style="background-color: darksalmon;">Node 객체</h1>
+    <h2>소개</h2>
+    Node 객체는 DOM에서 시조와 같은 역할을 한다.
+    다시 말해서 모든 DOM객체는 Node 객체를 상속받는다.
+    Node 객체의 위상을 그림으로 나타내면 아래와 같다.
+    <br><br>
+    <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/904/2242.png" alt="" srcset="">
+    <br>
+    <h2>주요기능</h2>
+    Node 객체의 주요한 임무는 아래와 같다.
+    <h3>관계</h3>
+    엘리먼트는 서로 부모 자식, 혹은 형재자매로 연결되어 있다.
+    각각의 Node가 다른 Node와 연결된 정보를 보여주는 API를 통해서 문서를 프로그래밍적으로 탐색할 수 있다.
+    <ul>
+        <li>Node.childNodes</li>
+        <li>Node.firstChild</li>
+        <li>Node.lastChild</li>
+        <li>Node.nextSibling</li>
+        <li>Node.previousSibling</li>
+        <li>Node.contains()</li>
+        <li>Node.hasChildNodes()</li>
+    </ul>
+    <h3>노드의 종류</h3>
+    Node 객체는 모든 구성요소를 대표하는 객체이기 때문에 각각의 구성요소가 어떤 카테고리에 속하는 것인지를 알려주는 식별자를 제공한다.
+    <ul>
+        <li>Node.nodeValue</li>
+        <li>Node.textContent</li>
+    </ul>
+    <h3>자식 관리</h3>
+    Node객체의 자식을 추가하는 방법에 대한 API
+    <ul>
+        <li>Node.appendChild()</li>
+        <li>Node.removeChild()</li>
+    </ul>
+    <br>
+    <h1 style="background-color: darksalmon;">Node 관계 API</h1>
+    Node 객체는 Node 간의 관계 정보를 담고있는 일련의 API를 가지고 있다.
+    다음은 관계와 관련된 프로퍼티들이다.
+    <ul>
+        <li>Node.childNodes<br>
+            자식노드들을 유사배열에 담아서 리턴한다.</li>
+        <li>Node.firstChild<br>
+            첫번째 자식노드</li>
+        <li>Node.lastChild<br>
+            마지막 자식노드</li>
+        <li>Node.nextSibling<br>
+            다음 형제 노드</li>
+        <li>Node.previousSibling<br>
+            이전 형제 노드</li>
+    </ul>
+    아래는 위의 API를 이용해 문서를 탐색하는 모습
+
+    <ul id="start">
+        <li><a href="./532">html</a></li>
+        <li><a href="./533">css</a></li>
+        <li><a href="./534">JavaScript</a>
+            <ul>
+                <li><a href="./535">JavaScript</a></li>
+                <li><a href="./536">DOM</a></li>
+                <li><a href="./537">BOM</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var s = document.getElementById('start');
+        console.log(1, s.firstChild);    //#text
+        var ul = s.firstChild.nextSibling
+        console.log(2, ul) //ul
+        console.log(3, ul.nextSibling); //#text  
+        console.log(4, ul.nextSibling.nextSibling); // script
+        console.log(5, ul.childNodes); //text, li, text, li, text, li, text
+        console.log(6, ul.childNodes[1]); // li(html)
+        console.log(7, ul.parentNode); // body
+
+    </script>
+    <h2>---------------------------------------------------------------------------------------------</h2>
+    childNodes => 자식객체들을 유사배열로 반환 <br>
+    firstChild, lastChild => 특정 위치의 자식배열 반환 <br>
+    nextSibiling => 다음 위치의 노드 반환 <br>
+    previousSibiling => 이전 위치의 노드반환 <br>
+    parentNode => 부모객체 반환 <br>
+    <br>저 사이의 빈 text노드가 거슬리는데, 안 나오게하는 API <br>
+    firstElementChild, <br>
+    lastElementChild, <br>
+    nextElementSibling, <br>
+    previousElementSibling.. 등으로서 ecma5에 추가된 api <br><br>
+
+    <h1 style="background-color: darksalmon;">노드 종류 API</h1>
+    노드 작업을 하게 되면 현재 석택된 노드가 어떤 타입인지를 판단해야 하는 경우가 있다. 이런 경우에 사용할 수 있는 API가 nodeType, nodeName이다.
+    <ul>
+        <li>Node.nodeType<br>
+            node의 타입을 의미한다.&nbsp;</li>
+        <li>Node.nodeName<br>
+            node의 이름 (태그명을 의미한다.)</li>
+    </ul>
+    <h2>Node Type</h2>
+    노드의 종류에 따라서 정해진 상수가 존재한다.
+    아래는 모든 노드의 종류와 종류에 따른 값을 줄력하는 예제이다.
+    <script>
+        for (var name in Node) {
+            console.log(name, Node[name]);
+        }
+    </script>
+    아래 예제는 노드 종류 API를 이용해서 노드를 처리하는 예제다. 함수가 자기 자신을 호출하는 것을 재귀함수라고 하는데 본 예제는 재귀 함수의 예를 보여준다.
+    <script>
+        function traverse(target, callback) {
+            if (target.nodeType === 'A')
+                //if(target.nodeType === 1)
+                callback(target);
+            var c = target.childNodes;
+            for (var i = 0; i < c.length; i++) {
+                traverse(c[i], callback);
+            }
+        }
+        traverse(document.getElementById('start'), function (elem) {
+            console.log(elem);
+        });
+    </script>
+    <h1 style="background-color: darksalmon;">노드 변경 API</h1>
+    노드를 추가, 제거, 변경하는 방법들을 알아보자
+    <h2>노드 추가</h2>
+    노드의 추가와 관련된 API들은 아래와 같다.
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.appendChild"
+                target="_blank">appendChild(child)</a><br>
+            노드의 마지막 자식으로 주어진 엘리먼트 추가</li>
+        <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Node.insertBefore"
+                target="_blank">insertBefore(newElement, referenceElement)</a><br>
+            appendChild와 동작방법은 같으나 두번째 인자로 엘리먼트를 전달 했을 때 이것 앞에 엘리먼트가 추가된다.</li>
+    </ul>
+    노드를 추가하기 위해서는 추가할 엘리먼트를 생서해야 하는데 이것은 document 객체의 기능이다.
+    아래의 API는 노드를 생성하는 API이다.
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node.appendChild"
+                target="_blank">appendChild(child)</a><br>
+            노드의 마지막 자식으로 주어진 엘리먼트 추가</li>
+        <li><a href="https://developer.mozilla.org/ko/docs/Web/API/Node.insertBefore"
+                target="_blank">insertBefore(newElement, referenceElement)</a><br>
+            appendChild와 동작방법은 같으나 두번째 인자로 엘리먼트를 전달 했을 때 이것 앞에 엘리먼트가 추가된다.</li>
+    </ul>
+    <예제>
+        <ul id="targ">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li id="rem">remove</li>
+            <li id="rep">repalce</li>
+        </ul>
+        <input type="button" onclick="callAppendChild();" value="appendChild()" />
+        <input type="button" onclick="callInsertBefore();" value="insertBefore();" />
+        <script>
+            function callAppendChild() {
+                var target = document.getElementById('targ');
+                var li = document.createElement('li');
+                var text = document.createTextNode('JavaScript');
+                li.appendChild(text);
+                target.appendChild(li);
+            }
+            function callInsertBefore() {
+                var target = document.getElementById('targ');
+                var li = document.createElement('li');
+                var text = document.createTextNode('jQuery');
+                li.appendChild(text);
+                target.insertBefore(li, target.firstChild);
+            }
+        </script>
+        <h2>노드 제거 </h2>
+        노드 제거를 위해서는 아래 API를 사용한다.
+        이 때 메소드는 삭제 대상의 부모 노드 객체의 것을 실행해야 한다는 점에서 유의하자.
+        <p><a href="https://developer.mozilla.org/ko/docs/Web/API/Node.removeChild">removeChild(child)</a></p>
+        <input type="button" onclick="callRemoveChild();" value="removeChild()">
+
+        <h2>노드 바꾸기</h2>
+        노드 바꾸기에는 아래 API가 사용된다.
+        <p><a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Node.replaceChild">replaceChild(newChild,oldChild)</a>
+        </p>
+        <input type="button" onclick="callReplaceChild();" value="replceChild()">
+        <script>
+            function callRemoveChild() {
+                var target = document.getElementById('rem');
+                target.parentNode.removeChild(target);
+            }
+            function callReplaceChild() {
+                var a = document.createElement('a');
+                a.setAttribute('href', 'http://opentutorials.org/module/904/6701');
+                a.appendChild(document.createTextNode('Web browser JavaScript'));
+
+                var target = document.getElementById('rep');
+                target.replaceChild(a, target.firstChild);
+            }
+        </script>
+
+        <h1 style="background-color: darksalmon;">jQuery 노드 변경 API</h1>
+        jQuery를 이용해서 노드를 제어하는 방법을 알아보자. jQuery에서 노드를 제어하는 기능은 주로 Manipulation 카테고리에 속해 있다.
+        <a href="http://api.jquery.com/category/manipulation/">http://api.jquery.com/category/manipulation/</a>
+        <h2>추가</h2>
+        추가와 관련된 주요한 메소드는 4가지다. <br>
+        <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/904/2278.png" alt="" srcset="">
+        <br>
+        아래 코드는 위의 API를 이용해서 문서의 구조를 변경한 예이다.
+        <p>
+            (+추가 <br>
+            div 태그는 Division의 약자로, 레이아웃을 나누는데 주요 쓰인다.
+        </p>
+        <div class="dc">content1</div>
+        <div class="dc">content2</div>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+            $('.dc').before('<div>before</div>');
+            $('.dc').after('<div>after</div>');
+            $('.dc').prepend('<div>prepend</div>');
+            $('.dc').append('<div>append</div>');
+        </script>
+        <h2>제거</h2>
+        제거와 관련된 API는 remove와 empty가 있다.
+        remove는 선택된 엘리먼트를 제거하는 것이도, empty는 선택된 엘리먼트의 텍스트 노드를 제거하는 것이다.
+        <div class="target" id="target1">
+            target 1
+        </div>
+
+        <div class="target" id="target2">
+            target 2
+        </div>
+
+        <input type="button" value="remove target 1" id="btn1" />
+        <input type="button" value="empty target 2" id="btn2" />
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+            $('#btn1').click(function () {
+                $('#target1').remove();
+            })
+            $('#btn2').click(function () {
+                $('#target2').empty();
+            })
+        </script>
+        <br><br>
+        <a href="http://jsbin.com/bocay/1/">실행</a>
+        <h2>바꾸기</h2>
+        replaceAll과 repalceWith는 모두 노드의 내용을 교체하는 API이다.
+        repalceWith가 제어대상을 먼저 지정하는 것에 비해서 replaceAll은 제어대상을 인자로 전달한다.
+        <p>
+            <input type="button" value="replaceAll target 1" id="btn1" />
+            <input type="button" value="replaceWith target 2" id="btn2" />
+        </p>
+        <script>
+            $('#btn1').click(function () {
+                $('<div>replaceAll</div>').replaceAll('#target1');
+            })
+            $('#btn2').click(function () {
+                $('#target2').replaceWith('<div>replaceWith</div>');
+            })
+        </script>
+        <p><a href="http://jsbin.com/kotuv/1/">실행</a></p>
+
+        <h2>복사</h2>
+        노드를 복사하는 방법을 알아보자.
+        <p> <input type="button" value="clone replaceAll target 1" id="btn1" />
+            <input type="button" value="clone replaceWith target 2" id="btn2" /></p>
+            <script>
+                $('#btn1').click(function(){
+                    $('#source').clone().replaceAll('#target1');
+                })
+                $('#btn2').click(function(){
+                    $('#target2').replaceWith($('#source').clone());
+                })
+            </script>
+
+            <h2>이동</h2>  
+            dom manipulation API의 인자로 특정 노드를 선택하면 이동의 효과가 난다. 
+
+            <div id="source">source</div>
+ 
+<input type="button" value="append source to target 1" id="btn1" />
+<script>
+    $('#btn1').click(function(){
+        $('#target1').append($('#source'));
+    })
+</script>
+
+</body>
+
+</html>
