@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text 객체</title>
+    <style>
+        #target {
+            font-size: 77px;
+            font-family: Georgia;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+        }
+        p {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="background-color: darkseagreen;">Text 객체</h1>
+    <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/904/2257.png" alt="">
+    <h2>소개</h2>
+    텍스트 객체는 텍스트 노드에 대한 DOM객체로 Charcter를 상속받는다. <br>
+    아래는 텍스트 노드를 찾는 예제이다. 주목할 것은 DOM에서는 공색이나 줄바꿈도 텍스트노드 라는 점이댜.
+    <p id="target1"><span>Hello world</span></p>
+    <p id="target2">
+        <span>Hello world</span>
+    </p>
+    <script>
+        var t1 = document.getElementById('target1').firstChild;
+        var t2 = document.getElementById('target2').firstChild;
+
+        console.log(t1.firstChild.nodeValue);
+        try {
+            console.log(t2.firstChild.nodeValue);
+        } catch (e) {
+            console.log(e);
+        }
+        console.log(t2.nextSibling.firstChild.nodeValue);
+    </script>
+    <h2>주요 기능</h2>  
+    <h3>값</h3> 
+    텍스트 노드의 값을 가져오는 API
+    <ul>
+        <li>data</li>   
+        <li>nodeValue</li>  
+    </ul>
+    <h3>조작</h3>   
+    <ul>
+        <li>appendDate()</li>   
+        <li>deleteDate()</li>
+        <li>insertDate()</li>
+        <li>replaceDate()</li>
+        <li>subStringDate()</li>    
+    </ul>
+    <h3>생성</h3>   
+    <ul><li>document.createTextNode()</li></ul>
+
+    <h1 style="background-color: darkseagreen;">값 API</h1> 
+    텍슽 노드는 DOM에서 실질적인 데이터가 저장되는 객체이다.  따라서 텍스트 노드에는 값과 관련된 여러기능들이 있다. 
+    <ul>
+        <li>nodeValue</li>  
+        <li>data</li>   
+    </ul>
+    <ul>
+        <li id="target">html</li>
+        <li>css</li>    
+        <li>JavaScript</li> 
+    </ul>
+    <script>
+        var t = document.getElementById('target').firstChild;
+        console.log('- 값 API');
+        console.log(t.nodeValue);
+        console.log(t.data);
+    </script>
+    <h1 style="background-color: darkseagreen;">조작 API</h1>   
+    텍스트 노드가 상속 받은 CharacterData 객체는 문자를 제어할 수 있는 다양한 API를 제공한다.  아래는 조작과 관련된 API들의 목록이다. 
+    <ul>
+        <li>appendDate</li>
+        <li>deleteDate</li>
+        <li>insertDate</li>
+        <li>replaceDate</li>
+        <li>subStringDate</li>
+    </ul>
+    <p id="target3">Cording everybody!</p>  
+    <p> data : <input type="text" id="datesource" value="JavaScript"></p>   
+    <p>    start : <input type="text" value="5" id="start"></p>
+    <p> end : <input type="text" value="5" id="end"></p>
+    <p><input type="button" value="appendDate(data)" onclick="callAppendData()" >
+    <input type="button" value="deleteData(start,end)" onclick="callDeleteData()">  
+    <input type="button" value="insertDate(start,end)" onclick="callInsertData()">
+    <input type="button" value="replaceData(start,end,data)" onclick="callReplaceData()">
+    <input type="button" value="subStringData(start,end)" onclick="callSubstringData()">
+    
+    </p>
+    <script>
+        var target = document.getElementById('target3').firstChild;
+        var data = document.getElementById('datasource');
+        var start = document.getElementById('start');
+        var end = document.getElementById('end');
+        function callAppendData() {
+            target.appendData(data.value);
+        }
+        function callDeleteData(){
+        target.deleteData(start.value, end.value);
+    }
+    function callInsertData(){
+        target.insertData(start.value, data.value); 
+    }
+    function callReplaceData(){
+        target.replaceData(start.value, end.value, data.value);
+    }
+    function callSubstringData(){
+        alert(target.substringData(start.value, end.value));
+    }
+    </script>
+    
+</body>
+
+</html>

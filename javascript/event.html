@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+</head>
+
+<body>
+    <h1 style="background-color: blueviolet;">이벤트</h1>
+    <h2>이벤트란?</h2>
+    이벤트는 어떤 사건을 의미한ㄷ. 브라우저에서의 사건이란 사용자가 클릭을 했을때, 등을 의미한다.
+    <p>onclick 속성의 자바스크립트 코드(alert(window.location))는 사용자가 이 버튼을 클릭 했을 '때' 실행된다. </p>
+    <h2>event target</h2>
+    target은 이벤트가 일어날 객체를 의미한다.
+    <h2>event type</h2>
+    <h2>event handler</h2>
+    <h1 style="background-color: blueviolet;">등록방법</h1>
+    <h2 style="background-color: burlywood;">inline</h2>
+    인라인(inline) 방식으로 이벤트를 등록하는 방법 <br>
+    인라인 방식은 이벤트를 이벤트 대상의 태그속성으로 지정하는것이다. <br>
+    ex) onclick="alert('Hello world')" <br>
+    이벤트가 발생한 대상을 필요로 하는경우 this를 통해서 팜조
+
+    <h2 style="background-color: burlywood;">프로퍼티 리스너</h2>
+    프로퍼티 리스너 방식은 이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등록하는 방식. 인라인 방식에 비해서 HTML과 JavaScript를 분리할 수 있다는 점에서 선호된다. <br>
+
+    <input type="button" id="target" value="button" />
+    <script>
+        var t = document.getElementById('target');
+        t.onclick = function () {
+            alert('Hello world');
+        }
+    </script>
+    <h3>이벤트 객체</h3>
+    이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체를 사용핟나.
+    이벤트 객체는 이벤트가 실행될때 이벤트 핸들러의 인자로 전달된다.
+    <br>
+    <input type="button" id="target2" value="button" />
+<script>
+    var t = document.getElementById('target2');
+    t.onclick = function(event){
+        alert('Hello world, '+event.target.value)
+    }
+    
+</script> <br>
+ie8 이하 버전에서는 이벤트 객체를 핸들러의 인자가 아니라 전역객체의 event 프로퍼티로 제공한다. 또한 target 프로퍼티도 지원하지 않는다. 아래는 이 문제를 해소하기 위한 코드다.
+<p><input type="button" id="target3" value="button3" />
+    <script>
+        var t = document.getElementById('target3');
+        t.onclick = function(event){
+            var event = event || window.event;
+            var target = event.target || event.srcElement;
+            alert('Hello world, '+target.value)
+        }
+    </script></p>
+<h2 style="background-color: burlywood;">addEventListener()</h2>    
+addEventListener은 이벤트를 등록하는 가장 권장되는 방식이다.
+이방식을 이용하면 여러개의 이벤트 핸들러를 등록할 수있다. 
+<input type="button" id="tar1" value="buttonAddEvent">
+<script>
+    var t = document.getElementById('tar1') ;
+    t.addEventListener('click',function(event) {
+        alert('Hello, '+event.target.value);
+    })
+    t.addEventListener('click',function(event) {
+        alert(2);
+    })
+</script>
+</body>
+
+</html>

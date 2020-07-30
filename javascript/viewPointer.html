@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            border: 50px solid steelblue;
+            padding: 50px;
+            margin: 50px;
+        }
+
+        #target {
+            width: 100px;
+            height: 2000px;
+        }
+    </style>
+    <div>
+        <div id="target">
+            Coding
+        </div>
+    </div>
+
+    <script>
+        var t = document.getElementById('target');
+        setInterval(function () {
+            console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset);
+        }, 1000)
+    </script>
+</head>
+
+<body>
+    <h2>viewport의 죄표</h2>
+    viewport는 문서의 내용중 사용ㅈ에게 보여주는 영역을 의미한다.
+    이에따라서 문서의 죄표가 있고, viewport의 좌표가 있다.
+    <br> getBoundingClientRect는 viewport의 좌표를 사용한다.
+
+    이를 통해서 알 수 있는 것은 getBoundingClientRect의 값이 스크롤에 따라서 달라지는 뷰포트의 좌표를 사용하고 있다는 것이다. 또한 스크롤의 정도를 알고 싶을 때는 pageYOffset을
+    사용하면 된다는 것도 알 수 있다.
+
+    <h2>문서의 좌표</h2>
+    그럼 문서의 좌표를 알고 싶으면 어떻게 해야 하나? 뷰포트의 좌표에 스크롤된 정도를 더해서 알 수 있다.
+    <br>t.getBoundingClientRect().top+window.pageYOffset; <br>
+
+    <h2>스크롤</h2>
+    그럼 문서의 스크롤 값을 변경하는 것은 어떻게 하는 것일까? scrollLeft와 scrollTop 프로퍼티를 이용하면 된다.
+    <input type="button" id="scrollBtn" value="scroll(0, 1000)" />
+    <script>
+        document.getElementById('scrollBtn').addEventListener('click', function () {
+            //scrollTo(scrollLeft,scrollTop);
+            window.scrollTo(0, 1000);
+        })
+    </script>
+
+    <h2>스크린의 크기</h2>
+    스크린의 크기는 모니터의 크기와 브라우저 viewport의 크기가 있다.
+    <script>
+        console.log('window.innerWidth:', window.innerWidth, 'window.innerHeight:', window.innerHeight);
+        console.log('screen.width:', screen.width, 'screen.height:', screen.height);
+    </script>
+    <p>window.inner*은 뷰포트의 크기를 나타내고, screen.*은 스크린의 크기를 나타낸다.</p>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서의 기하학적 특성</title>
+    <style>
+        body {
+            padding:0;
+            margin: 0;
+        }
+        div{
+            border:  50px solid #1065e6;
+            padding: 50px;
+            margin: 50px;
+        }
+        #target {
+            width: 100px;
+            height: 100px;
+            border: 50px solid #1065e6;
+            padding: 50px;
+            margin: 50px;   
+        }
+      
+        #target2{
+        width:100px;
+        height:100px;
+    }
+    </style>
+  
+</head>
+<body>
+    <h1 style="background-color: chartreuse;">문서의 기하학적 특성</h1> 
+    요소들의 위치와 크기를 알아내는 방법
+    <h2>요소의 크기와 위치</h2> 
+    엘리먼트의 크기를 알아내는 방법
+    <div  id="target">
+        Coding
+    </div>
+    <script>
+        var t = document.getElementById('target');
+        console.log(t.getBoundingClientRect())  ;
+    </script>
+     width: 100px; <br>
+     height: 100px; <br>
+     border: 50px solid #1065e6; <br>
+     padding: 50px;<br>
+     margin: 50px;   <br><br>
+     -화면에 표시된 모습- <br>
+    <img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/module/904/2402.png" alt="">
+    <br>
+
+    <div>
+        <div id="target2">
+            Coding
+        </div>
+    </div>
+    <script>
+    var t = document.getElementById('target2');
+    console.log(t.getBoundingClientRect());
+    console.log(t.offsetParent);
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
