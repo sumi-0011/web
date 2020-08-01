@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서로딩</title> 
+</head>
+<body>
+    <h1>문서로딩</h1>
+    <p>
+        웹페이지를 프로그래밍적으로 제어하기 위해서는 웹페이지의 모든요소에 대한 처리가 끝나야한다. 
+        <br>이를 알려주는 이벤트가 load와 DOMContentLoaded이다. 
+    </p>
+    !자바스크립트는 문서 끝에 위치시키는것이 좋다 <br>
+    또는 load이벤트를 이용하는것이다. 
+    <script>
+        window.addEventListener('load',function() {
+            var t = document.getElementById('target1')  ;
+            console.log(t);
+        })
+        window.addEventListener('DOMContentLoaded', function(){
+                console.log('DOMContentLoaded');
+            })
+    </script>
+    <p id="target1">Hello</p>   
+    <p>하지만 load이벤트는 문서내의 모든 리소스 다운로드가 끝난후에 실행된다. 
+        이것은 구동이 너무 지연되는 문제를 초래할수있다. <br>
+        DOMContentLoaded는 문서에서 스크립트 작업을 할수 있을때 샐행되기 때문에 이미지 다움을 기다릴 필요가 없다. 
+    </p>
+
+</body>
+</html>

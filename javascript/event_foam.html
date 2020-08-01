@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="background-color: cadetblue;">폼</h1>    
+    <h2>submit</h2> 
+    submit는 폼의 정보를 정송하는 명령인 submit시에 일어남
+    
+    <p>전속전 텍스트 필드에 값이 입력되었는지를 확인, 만약 값이 입력되지 않았다면 전송을 중단</p>   
+    <form action="text.html" id="target1">
+        <label for="name">name</label>  <input type="name" id="name1">
+        <input type="submit">    
+    </form>
+    <script>
+        var t = document.getElementById('target1');
+        t.addEventListener('submit',function(event) {
+            if(document.getElementById('name1').value.length===0)    {
+                alert('Name 필드의 값이 누락 되었습니다.');
+                //전송을 취소하는 구문
+                event.preventDefault();
+            }
+        });
+    </script>
+    <br>
+    <h2>change</h2> 
+    change는 폼 컨트롤의 값이 변경 되었을 때 발생하는 이벤트다. <br>
+    <p id="result2">result</p>
+    <input type="name" id="target2">
+    <script>
+        var t = document.getElementById('target2');
+        t.addEventListener('change',function(event) {
+            document.getElementById('result2').innerHTML = event.target.value;
+        })    
+    </script>
+    <h2>blur, focus</h2>    
+    엘리먼트에 포커스가 생겼을때, 사라졌을떄 발생하는 이벤트. 
+     <input type="name" id="target3">
+     <script>
+         var t = document.getElementById('target3');
+         t.addEventListener('blur',function(event) {
+             console.log('blur');
+         });
+         t.addEventListener('focus',function(event) {
+             console.log('focus');
+         });
+     </script>
+
+</body>
+</html>
