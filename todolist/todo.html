@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            font-size: 20px;
+        }
+
+        #body {
+            text-align: center;
+        }
+
+        #title_box {
+            font-size: 50px;
+            padding: 30px;
+        }
+
+        #input_box {
+            height: 40px;
+            display: grid;
+            grid-template-columns: 1fr 80px;
+
+
+        }
+
+        #list_box {
+            border: 2px solid black;
+            margin-top: 15px;
+            padding: 5px;
+        }
+
+        #task_box ul {
+
+            text-align: left;
+            list-style-type: none;
+        }
+
+        #task_list {
+            padding-right: 40px;
+        }
+
+        .modifyBt {
+            float: right;
+
+        }
+
+        #task_list .deleteBt {
+            float: right;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div id="body">
+        <div id="title_box">TO DO LIST</div>
+        <div id="input_box">
+            <!--text에 입력하고 submit버튼을 누르면 list에 추가되게 만들기      -->
+            <input type="textarea" placeholder="write task" id="task_input" class="inputBt">
+            <input type="button" value="submit" onclick="addTask();" class="inputBt">
+        </div>
+        <div id="list_box">
+            <div id="complete_box">
+                <input type="button" value="All Check">
+                <input type="button" value="ALL">
+                <input type="button" value="COMPLETE">
+                <input type="button" value="UNCOMPLETE">
+            </div>
+
+            <div id="task_box">
+                <ul id="task_list">
+                    <li class="task_un">
+                        <input type="checkbox" name="chk" class="chk">
+                        list1
+                        <input type="button" value="O" class="modifyBt"><!--  -->
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_un">
+                        <input type="checkbox" name="chk" class="chk">
+                        list2
+                        <input type="button" value="O" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+
+                </ul>
+            </div>
+
+            <!--script의 type 디폴트가 text/javascript로 지정되기 때문에 동일문장이라고 봐도 된다. -->
+            <script type="text/javascript">
+
+                //버튼 클릭시 실행되는 함수입니다.
+                function addTask() {
+                    //위의 text상자에서 입력받은 변수를 저장
+                    var temp = document.getElementById('task_input').value;
+                    if (temp != '') {
+
+                        //task 변수에 createElement를 사용해 생성할 엘리먼트를 담는다.
+                        var task = document.createElement('li');
+                        task.className = 'task_un';
+                        //추가할 task엘리먼트 안의 내용을 정해준다. 
+                        //chk클래스의 체크박스와 task내용을 추가
+                        task.innerHTML = '<input type="checkbox" name="chk" class="chk"> ' + temp +
+                            '<input type="button" value="O" class="modifyBt">' + '<input type="button" value="X" class="deleteBt">';
+                        //appendChlid로 이전에 정의한 task변수의 내용을 실체 추가한다. 
+                        document.getElementById('task_list').appendChild(task);
+                        document.getElementById('task_input').value = '';
+                    }
+
+                }
+
+                //삭제 버튼을 클릭시 실행되는 함수
+                function deleteTask(event) {
+                   
+                }
+            </script>
+        </div>
+
+    </div>
+    <div></div>
+</body>
+
+</html>
