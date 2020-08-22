@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <script src="../jquery-3.5.1.js"></script>
     <style>
         body {
             display: grid;
@@ -47,7 +48,8 @@
 
         .modifyBt {
             float: right;
-
+           
+            
         }
 
         #task_list .deleteBt {
@@ -63,62 +65,137 @@
         <div id="title_box">TO DO LIST</div>
         <div id="input_box">
             <!--text에 입력하고 submit버튼을 누르면 list에 추가되게 만들기      -->
-            <input type="textarea" placeholder="write task" id="task_input" class="inputBt">
-            <input type="button" value="submit" onclick="addTask();" class="inputBt">
+            <input type="textarea" placeholder="write task" id="task_input" value="">
+            <input type="button" value="submit" id="submitBt">
         </div>
         <div id="list_box">
             <div id="complete_box">
-                <input type="button" value="All Check">
-                <input type="button" value="ALL">
-                <input type="button" value="COMPLETE">
-                <input type="button" value="UNCOMPLETE">
+                <input type="button" value="All Check" id="allcheck">
+                <input type="button" value="All unCheck" id="alluncheck">
+
+                <input type="button" value="ALL" id="all">
+                <input type="button" value="COMPLETE" id="complete">
+                <input type="button" value="UNCOMPLETE" id="uncomplete">
             </div>
 
             <div id="task_box">
                 <ul id="task_list">
-                    <li class="task_un">
+                    <li class="task_uncheck">
                         <input type="checkbox" name="chk" class="chk">
-                        list1
-                        <input type="button" value="O" class="modifyBt"><!--  -->
+                        <span class="task_text">list1</span>
+                        <input type="button" value="modify" class="modifyBt">
                         <input type="button" value="X" class="deleteBt">
                     </li>
-                    <li class="task_un">
+                    <li class="task_uncheck" style="visibility: unset;">
                         <input type="checkbox" name="chk" class="chk">
-                        list2
-                        <input type="button" value="O" class="modifyBt">
+                        <span class="task_text">list2</span>
+                        <input type="button" value="modify" class="modifyBt">
                         <input type="button" value="X" class="deleteBt">
                     </li>
-
                 </ul>
             </div>
 
             <!--script의 type 디폴트가 text/javascript로 지정되기 때문에 동일문장이라고 봐도 된다. -->
             <script type="text/javascript">
+                let submitBt = document.getElementById('submitBt');
+                let taskInput = document.getElementById('task_input');
+                /******************메뉴 버튼*********************/
+                let allCheckBt = document.getElementById('allcheck');
+                let allUnCheckBt = document.getElementById('alluncheck');
+                /******************리스트 버튼*******************/
+                let chk_check = document.getElementsByClassName("chk");
+                let delBt = document.getElementsByClassName('deleteBt');
+                let modBt = document.getElementsByClassName('modifyBt');
+                let task_ul = document.getElementById('task_list');
 
-                //버튼 클릭시 실행되는 함수입니다.
-                function addTask() {
-                    //위의 text상자에서 입력받은 변수를 저장
-                    var temp = document.getElementById('task_input').value;
-                    if (temp != '') {
 
-                        //task 변수에 createElement를 사용해 생성할 엘리먼트를 담는다.
-                        var task = document.createElement('li');
-                        task.className = 'task_un';
-                        //추가할 task엘리먼트 안의 내용을 정해준다. 
-                        //chk클래스의 체크박스와 task내용을 추가
-                        task.innerHTML = '<input type="checkbox" name="chk" class="chk"> ' + temp +
-                            '<input type="button" value="O" class="modifyBt">' + '<input type="button" value="X" class="deleteBt">';
-                        //appendChlid로 이전에 정의한 task변수의 내용을 실체 추가한다. 
-                        document.getElementById('task_list').appendChild(task);
-                        document.getElementById('task_input').value = '';
+                function eventListenerAdd() {
+                    for (var i = 0; i < chk_check.length; i++) {
+                        //삭제 버튼 클릭시 delteTask()을 실행하는 이벤트 리스너 등록
+                        delBt[i].addEventListener("click", deleteTask);
+                        //체크박스 선택시 일어나는 이벤트 함수
+                        chk_check[i].addEventListener("change", checkClick);
+                        modBt[i].addEventListener("click", modifyTask)
                     }
 
+                }
+                //문서가 다 로딩된 후에 실행되야할것
+                window.onload = function () {
+                    //submit 이벤트
+                    submitBt.addEventListener("click", addTask);
+                    taskInput.addEventListener("keyup", function (event) {
+                        if (event.keyCode === 13) {
+                            addTask();
+                        }
+                    })
+                    //menu button event
+                    allCheckBt.addEventListener("click",allCheck);
+                    allUnCheckBt.addEventListener('click',allunCheck)
+
+                    eventListenerAdd();
+
+                }
+                //체크박스를 모두 체크
+                function allCheck() {
+                    for(var i=0;i<chk_check.length;i++) {
+                        $(chk_check[i]).prop('checked',true);
+                    }
+                }
+                //체크박스를 모두 해제
+                function allunCheck() {
+                    for(var i=0;i<chk_check.length;i++) {
+                        $(chk_check[i]).prop('checked',false);
+                    }
+                }
+                //수정 버튼을 클릭시 실행되는 함수 
+                function modifyTask(event) {
+                    var changeTask = prompt('수정할 task를 입력하세요 ', "task");
+                    console.log(changeTask);
+                    event.target.parentNode.children[1].innerHTML = changeTask;
                 }
 
                 //삭제 버튼을 클릭시 실행되는 함수
                 function deleteTask(event) {
-                   
+                    //event.target은 x버튼이고, parentNode는 그 버튼이 위치만 li를 가리킨다.
+                    var del_temp = event.target.parentNode;
+                    $(event.target.parentNode).remove();
                 }
+                function checkClick(event) {
+                    var temp = event.target.parentNode.className;
+                    //task내용을 console에 출력
+                    console.log(event.target.parentNode.children[1].innerHTML);
+                    if (temp == "task_uncheck") {
+                        event.target.parentNode.className = "task_check";
+                    }
+                    else {
+                        event.target.parentNode.className = "task_uncheck";
+                    }
+                }
+
+                //버튼 클릭시 실행되는 함수입니다.
+                function addTask() {
+                    var temp = taskInput.value;
+                    //위의 text상자에서 입력받은 변수를 저장
+                    if (temp != '') {
+                        //task 변수에 createElement를 사용해 생성할 엘리먼트를 담는다.
+                        var task = document.createElement('li');
+                        task.className = 'task_uncheck';
+                        //추가할 task엘리먼트 안의 내용을 정해준다. 
+                        //chk클래스의 체크박스와 task내용을 추가
+                        task.innerHTML = '<input type="checkbox" name="chk" class="chk"> ' + '<span class="task_text">' + temp + '</span>' + '<input type="button" value="modify" class="modifyBt">' + '<input type="button" value="X" class="deleteBt">';
+                        //appendChlid로 이전에 정의한 task변수의 내용을 실체 추가한다. 
+                        document.getElementById('task_list').appendChild(task);
+                        document.getElementById('task_input').value = '';
+                        //버튼에 이벤트 리스너 다시 추가
+                        eventListenerAdd();
+
+                    }
+
+
+                }
+
+
+
             </script>
         </div>
 
