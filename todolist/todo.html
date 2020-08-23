@@ -12,16 +12,19 @@
             grid-template-columns: 1fr 2fr 1fr;
             font-size: 20px;
         }
+
         @media(max-width:1500px) {
             body {
                 grid-template-columns: 1fr 3fr 1fr;
             }
         }
+
         @media(max-width:1000px) {
-            body { 
+            body {
                 grid-template-columns: 1fr 4fr 1fr;
             }
         }
+
         @media(max-width:800px) {
             body {
                 display: block;
@@ -29,8 +32,6 @@
                 margin-right: 40px;
             }
         }
-
-
 
         #body {
             text-align: center;
@@ -90,11 +91,9 @@
         <div id="list_box">
             <div id="complete_box">
                 <input type="button" value="All Check" id="allcheck">
-
-
-                <input type="button" value="ALL" id="all" disabled>
-                <input type="button" value="COMPLETE" id="complete" disabled>
-                <input type="button" value="UNCOMPLETE" id="uncomplete" disabled>
+                <input type="button" value="ALL" id="allshow">
+                <input type="button" value="COMPLETE" id="completeshow">
+                <input type="button" value="UNCOMPLETE" id="uncompleteshow">
             </div>
 
             <div id="task_box">
@@ -111,6 +110,43 @@
                         <input type="button" value="modify" class="modifyBt">
                         <input type="button" value="X" class="deleteBt">
                     </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo3</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo4</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo5</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo6</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo7</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+                    <li class="task_uncheck">
+                        <input type="checkbox" name="chk" class="chk">
+                        <span class="task_text">Todo8</span>
+                        <input type="button" value="modify" class="modifyBt">
+                        <input type="button" value="X" class="deleteBt">
+                    </li>
+
                 </ul>
             </div>
 
@@ -120,7 +156,9 @@
                 let taskInput = document.getElementById('task_input');
                 /******************메뉴 버튼*********************/
                 let allCheckBt = document.getElementById('allcheck');
-
+                let allshowBt = document.getElementById('allshow');
+                let completeBt = document.getElementById('completeshow');
+                let uncompleteBt = document.getElementById('uncompleteshow');
                 /******************리스트 버튼*******************/
                 let chk_check = document.getElementsByClassName("chk");
                 let delBt = document.getElementsByClassName('deleteBt');
@@ -149,10 +187,44 @@
                     })
                     //menu button event
                     allCheckBt.addEventListener("click", allCheck);
-
-
+                    allshowBt.addEventListener("click", allList);
+                    completeBt.addEventListener("click", completeList);
+                    uncompleteBt.addEventListener("click", uncompleteList);
                     eventListenerAdd();
 
+                }
+                //all 버튼 클릭시 실행, 모든 리스트를 표시하는 함수
+                function allList() {
+                    for (var i = 0; i < chk_check.length; i++) {
+
+                        $(chk_check[i].parentNode).show();
+
+
+                    }
+                }
+                //complete 버튼을 클릭시 실행, 체크된 항목만을 표시하는 함수
+                function completeList() {
+                    for (var i = 0; i < chk_check.length; i++) {
+                        if (chk_check[i].parentNode.className == 'task_uncheck') {
+                            $(chk_check[i].parentNode).hide();
+                        }
+                        else {
+                            $(chk_check[i].parentNode).show();
+                        }
+
+                    }
+                }
+                //uncomplete 버튼을 클릭시 실행, 체크가 안된 항목만을 표시
+                function uncompleteList() {
+                    for (var i = 0; i < chk_check.length; i++) {
+                        if (chk_check[i].parentNode.className == 'task_check') {
+                            $(chk_check[i].parentNode).hide();
+                        }
+                        else {
+                            $(chk_check[i].parentNode).show();
+                        }
+
+                    }
                 }
                 //체크박스를 모두 체크 -> 모든 task 완료
                 function allCheck() {
