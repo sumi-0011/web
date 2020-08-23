@@ -1,62 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INFP</title>
-    <link rel="stylesheet" href="nf.css" type="text/css">
-
-</head>
-
-<body>
-    <div id="title"><a href="main.html">
-            <h1 style="padding-top: 13px;">MBTI</h1>
-        </a></div>
-    <div id="grid_body">
-        <div id="grid_li">
-            <ul>
-                <li><a href="istj.html">ISTJ</a></li>
-                <li><a href="isfj.html">ISFJ</a></li>
-                <li><a href="infj.html">INFJ</a></li>
-                <li><a href="intj.html">INTJ</a></li>
-                <li><a href="istp.html">ISTP</a></li>
-                <li><a href="isfp.html">ISFP</a></li>
-                <li><a href="infp.html">INFP</a></li>
-                <li><a href="intp.html">INTP</a></li>
-                <li><a href="estp.html">ESTP</a></li>
-                <li><a href="esfp.html">ESFP</a> </li>
-                <li><a href="enfp.html">ENFP</a> </li>
-                <li><a href="entp.html">ENTP</a></li>
-                <li><a href="estj.html">ESTJ</a></li>
-                <li><a href="esfj.html">ESFJ</a></li>
-                <li><a href="enfj.html">ENFJ</a></li>
-                <li><a href="entj.html">ENTJ</a></li>
-
-            </ul>
-        </div>
-        <div id="grid_main">
-            <div id="top">
-                INFP : 열정적인 중재자
-            </div>
-            <div id="mid">
-                <img src="infp.jpg" alt="">
-                <div id="mid_in">
-                    <div id="saying">
-
-                        "금이라고 해서 다 반짝이는 것은 아니며, 헤매고 다니는 자가 모두 길을 잃은 것은 아닙니다. 오래되었어도 강한 것은 시들지 않으며, 깊게 뻗은 뿌리에는 서리가 닿지
-                        않습니다."
-                    </div>
-                    <div>
-                        <br>
-                    </div>
-                    <div id="formula">
-                        열정적인 중재자
-                    </div>
-                </div>
-            </div>
-            <div id="bottom">
-                <p>중재자형 사람은 최악의 상황이나 악한 사람에게서도 좋은 면만을 바라보며 긍정적이고 더 나은 상황을 만들고자 노력하는 진정한 이상주의자입니다. 간혹 침착하고 내성적이며 심지어는
+<p>중재자형 사람은 최악의 상황이나 악한 사람에게서도 좋은 면만을 바라보며 긍정적이고 더 나은 상황을 만들고자 노력하는 진정한 이상주의자입니다. 간혹 침착하고 내성적이며 심지어는
                     수줍음이 많은 사람처럼 비추어지기도 하지만, 이들 안에는 불만 지피면 활활 타오를 수 있는 열정의 불꽃이 숨어있습니다. 인구의 대략 4%를 차지하는 이들은 간혹 사람들의 오해를
                     사기도 하지만, 일단 마음이 맞는 사람을 만나면 이들 안에 내재한 충만한 즐거움과 넘치는 영감을 경험할 수 있을 것입니다.</p>
                 <p>이들은 논리나 단순한 흥미로움, 혹은 인생의 실용적인 부분이 아닌 그들 나름의 원리원칙에 근거하여 사고하고 행동합니다. 더욱이 성취에 따르는 보상이나 그렇지 못할 경우에 생길 수
@@ -99,9 +41,3 @@
                 <p>다행인 것은 깊은 나락에 빠져 있던 이들도 봄이 오면 다시금 봉오리를 피우는 꽃과 같이 이들의 애정 어린 마음과 창의적인 생각, 이타주의적이며 이상주의적인 생각 역시 제자리로 돌아와
                     자신뿐 아니라 곁에서 지켜보는 이들로 하여금 뿌듯함에 미소 짓게 합니다. 그리고 다시금 사실적 논리나 현실적인 유용성의 관점이 아닌 넘치는 영감과 인간애, 친절함, 그리고 따뜻한
                     마음으로 세상을 바라봅니다.</p>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
