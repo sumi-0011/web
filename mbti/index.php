@@ -8,7 +8,24 @@
         echo $_GET['id'];   
         ?>
     </title>
-    <link rel="stylesheet" href="nf.css" type="text/css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="
+    <?php
+    $temp = $_GET['id'];
+    if($temp[1]=="N") {
+        if($temp[2]=="F")
+        echo "NF";
+        else
+        echo "NT";
+    }
+    else {
+        if($temp[3]=="J")
+        echo "SJ";
+        else
+        echo "SP";
+    }
+    ?>.css" type="text/css">
     
 </head>
 <body>
@@ -21,21 +38,21 @@
         <div id="grid_li">
             <ul>
                 <li><a href="index.php?id=ISTJ">ISTJ</a></li>
-                <li><a href="isfj.html">ISFJ</a></li>
+                <li><a href="index.php?id=ISFJ">ISFJ</a></li>
                 <li><a href="index.php?id=INFJ">INFJ</a></li>
-                <li><a href="intj.html">INTJ</a></li>
-                <li><a href="istp.html">ISTP</a></li>
-                <li><a href="isfp.html">ISFP</a></li>
+                <li><a href="index.php?id=INTJ">INTJ</a></li>
+                <li><a href="index.php?id=ISTP">ISTP</a></li>
+                <li><a href="index.php?id=ISFP">ISFP</a></li>
                 <li><a href="index.php?id=INFP">INFP</a></li>
-                <li><a href="intp.html">INTP</a></li>
-                <li><a href="estp.html">ESTP</a></li>
-                <li><a href="esfp.html">ESFP</a> </li>
-                <li><a href="enfp.html">ENFP</a> </li>
-                <li><a href="entp.html">ENTP</a></li>
-                <li><a href="estj.html">ESTJ</a></li>
-                <li><a href="esfj.html">ESFJ</a></li>
-                <li><a href="enfj.html">ENFJ</a></li>
-                <li><a href="entj.html">ENTJ</a></li>
+                <li><a href="index.php?id=INTP">INTP</a></li>
+                <li><a href="index.php?id=ESTP">ESTP</a></li>
+                <li><a href="index.php?id=ESFP">ESFP</a></li>
+                <li><a href="index.php?id=ENFP">ENFP</a></li>
+                <li><a href="index.php?id=ENTP">ENTP</a></li>
+                <li><a href="index.php?id=ESTJ">ESTJ</a></li>
+                <li><a href="index.php?id=ESFJ">ESFJ</a></li>
+                <li><a href="index.php?id=ENFJ">ENFJ</a></li>
+                <li><a href="index.php?id=ENTJ">ENTJ</a></li>
             </ul>
         </div>
         <div id="grid_main"> 
@@ -45,20 +62,20 @@
                 ?>
             </div>
             <div id="mid">
-                <img src="<?php echo $_GET['id'];?>.jpg" alt="" srcset="">
+                <img src="img/<?php echo $_GET['id'];?>.jpg" alt="" srcset="">
                   <div id="mid_in">
                     <div id="saying">
-                        당신이 현재하는 사소한 행위는 잔잔한 물결처럼 서서히 퍼져나가 모든 이에게 영향을 줍니다. 당신의 마음가짐이 다른 이의 가슴에 불을 지필 수도, 근심을 초래할 수도
-                        있습니다.
-                        당신의 숨소리가 사랑의 빛을 뿜어낼 수도, 우울함으로 온 방안을 어둡게 만들 수도 있습니다. 당신의 시선이 즐거움을 선사할 수도 있으며, 당신의 언어가 자유를 향한 열망을
-                        독려할
-                        수도 있습니다. 당신의 행동 하나하나가 다른 이들의 생각과 마음을 열 수 있습니다.
+                        <?php
+                            echo file_get_contents("saying/".$_GET['id']);
+                        ?>
                     </div>
                     <div>
                         <br>
                     </div>
                     <div id="formula">
-                        정의로운 사회운동가
+                        <?php
+                            echo $_GET['id'];
+                        ?>
                     </div>
                 </div>
             
