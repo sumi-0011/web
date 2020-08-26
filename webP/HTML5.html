@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS 실습 퀴즈</title>
+    <style>
+        #big_title {
+            border: 10px outset blue;
+            color: white;
+            text-align: center;
+            background-color: blue;
+            padding: 20px;
+        }
+
+        div {
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+
+        p {
+            text-indent: 15px;
+        }
+
+        .note {
+            background-color: yellow;
+            border-left: 10px solid gold;
+            padding: 15px;
+        }
+
+        table,td,th{
+            border: 3px solid black;
+            border-collapse: collapse;
+            
+        }
+        
+        td,th {
+            text-align: center;
+            padding: 15px;
+        }
+        iframe {
+            height: 500px;
+            width: 1000px;
+        }
+        #address {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="big_title">HTML5 소개 페이지</h1>
+
+    <div>
+        <h2>1. HTML5 개요</h2>
+        <p>HTML5는 <strong> W3C가 발표하는 HTML의 최신 버전</strong>이다. 2014년 10월 28일 완전히 표준화되었다.</p>
+        <p>HTML5에서 유효성 검사를 위한 선언문은 간단하게 몇 자만 적으면 된다. 특별한 경우가 아닌 이상 대소문자를 딱히 구분하지 않는다. DOCTYPE 부분은 대문자로 적는 것이 좋다.
+            <strong>HTML 문법을 사용할 때는 선언문을 반드시 적어야 한다.</strong> HTML5에서는 시맨틱 웹을 중요시하여 여러가지 태그를 새롭게 만들었다.</p>
+        <p class="note">
+            Note : start 태그는 opening tag라고 부르며, end tag는 closing tag라고 부른다.
+        </p>
+        <p class="note">Note : body 섹션 안에 정의된 내용만 브라우저에 보여진다.</p>
+    </div>
+    <div>
+        <h2>2. 좋아하는 페이지 링크</h2>
+        <a href="https://www.w3.org/html/" target="_blank">https://www.w3.org/html/</a>
+        <a href="https://www.w3schools.com/" target="_self">https://www.w3schools.com/</a>
+
+    </div>
+    <div>
+        <h2>3. 관련 그림</h2>
+        <img src="../images/html.png" alt="" width="320px" height="300px">
+    </div>
+    <div>
+        <h2>4. 시간표</h2>
+        <table >
+            <caption><span style="color:red;">2020 2학기</span> 시간표</caption>
+            <tr>
+                <th rowspan="2"><strong>교시</strong></th>
+                <th colspan="5">요일</th>
+            </tr>
+            <tr>
+               <td>월</td>
+               <td>화</td>
+               <td>수</td>
+               <td>목</td>
+               <td>금</td>
+            </tr>
+            <tr>
+                <td>1교시</td>
+                <td rowspan="2">객체지향 설계</td>  
+                <td></td>
+                <td></td>   
+                <td></td>   
+                <td></td>   
+
+            </tr>
+            <tr>
+                <td>2교시</td>
+                
+                <td rowspan="2">알고리즘</td>  
+                <td></td>
+                <td></td>
+                <td rowspan="2">시스템 프로그래밍</td>  
+            </tr>
+            <tr>
+                <td>3교시</td>
+                <td rowspan="2">시스템 프로그래밍</td>  
+                <td></td>   
+                <td></td>
+
+            </tr>
+            <tr> 
+                <td>4교시</td>  
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>5교시</td>  
+                <td></td>
+                <td rowspan="2">객체지향설계</td>   
+                <td rowspan="2">웹프로그래밍</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>6교시</td>  
+                <td rowspan="2">알고리즘</td>   
+                <td></td>
+                <td rowspan="2">컴퓨터구조</td>
+            </tr>
+            <tr>
+                <td>7교시</td>  
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>8교시</td>
+                <td>컴퓨터구조</td> 
+                <td></td>   
+                <td></td>   
+                <td></td>   
+                <td rowspan="2">웹프로그래밍</td>
+            </tr>
+            <tr>
+                <td>9교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+    <div>
+        <h2>5. 이번주 해야 할 일</h2>
+        <ol>
+            <li>예습
+                <ul>
+                    <li>CSS란</li>
+                    <li>CSS의 사용</li>
+                    <li>선택자</li> 
+                </ul>
+            </li>
+            <li>복습
+                <ul>
+                    <li>Learn CSS</li>
+                    <li>The Box Model</li>  
+                    <li>Colors</li>
+                </ul>
+            </li>
+
+        </ol>
+
+    </div>
+
+    <iframe src="http://plus.cnu.ac.kr/html/kr/" frameborder="0"></iframe>
+    <hr width = "100%" color = "black" size = "1">
+    <div id="address">
+        You can comtact author at <a href="http://www.cnu.ac.kr/contact">www.cnu.ac.kr</a>. <br>
+        If you see any bugs, please <a href="selina2000@naver.com">contack webmaster</a>. <br>
+        You may also want to visit us: <br>
+        99 Daehak-ro, Yuseong-gu, Daejeon 34134, Korea <br>
+    </div>
+</body>
+
+</html>
