@@ -16,7 +16,7 @@
             $file_exist = name_search($fileName,$key);
             $key_exist =Keyword_search($content,$value);
             if($file_exist=="true" && $key_exist =="true") {
-                echo $key.": ".$value;
+                echo "<li>".$key.": ".$value."</li>";
                 break;
             }
         }
@@ -27,7 +27,7 @@
     foreach($infoArray as $key=>$value) {
         $file_exist = name_search($fileName,$key);
         if($file_exist=="true") {
-            echo $key.": ".$value;
+            echo "<li>".$key.": ".$value."</li>";
             break;
         }
     }
@@ -39,7 +39,7 @@
            //내용 키워드 확인 경우 
             $key_exist =Keyword_search($content,$value);
             if($key_exist =="true") {
-                echo $key.": ".$value;
+                echo "<li>".$key.": ".$value."</li>";
                 break;
             }
         }
